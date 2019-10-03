@@ -1,0 +1,11 @@
+#config/packages/nelmio_cors.yaml
+nelmio_cors:
+    paths:
+        '^/api':  
+            origin_regex: true
+            allow_origin: ['*'] # You probably want to change this regex to match your real domain
+            allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
+            allow_headers: ['Content-Type', 'Access-Control-Expose-Headers', 'Authorization', 'Accept']
+            expose_headers: ['Content-Disposition', 'Content-Length', 'Content-range' ,'Link', '*', 'X-Total-Count']
+            max_age: 18000
+    

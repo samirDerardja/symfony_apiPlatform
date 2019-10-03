@@ -1,0 +1,105 @@
+easy_admin:
+   site_name: 'WacProject.' 
+   formats:
+        datetime:   'd/m/Y à H\hi e'
+        date:       'd/m/Y'
+        time:       'H\hi e'
+   design:
+        assets:
+            css:
+                - 'dist/css/admin.css'
+        brand_color: '#E01A22'
+    
+        menu:
+            - { entity: 'User', label: 'Utilisateur', icon: 'user' }
+            - { entity: 'Produit', label: 'Produits', icon: 'product-hunt' }
+            - { entity: 'Category', label: 'Categorie', icon: 'tag' }
+            - { entity: 'Post', label: 'Article', icon: 'rocket' }
+            - { entity: 'Comment', label: 'Commentaire', icon: 'comment' }
+
+   entities:
+   user:
+        display_name: true
+        name_property_path: '_username'
+        display_avatar: false
+        
+#    design:
+#         brand_color: '#1ABC9C'
+        
+
+   entities:
+        User:
+            class: App\Entity\User
+            list:
+                fields:
+                    - { property: 'nom'}
+                    - { property: 'prenom'}
+                    - { property: 'adresse'}
+                    - { property: 'codeCommune'}
+                    - { property: 'telephone'}
+                    - { property: 'message'}
+                    - { property: 'mail'}
+                       
+     
+            show:
+                fields:
+                    - { property: 'nom'}
+                    - { property: 'prenom'}
+                    - { property: 'adresse'}
+                    - { property: 'codeCommune'}
+                    - { property: 'telephone'}
+                    - { property: 'message'}
+                    - { property: 'mail'}
+                        
+                    # - { property: 'imageFile'}
+            help: 'Liste de tous les utilisateurs'
+            role: ROLE_ADMIN
+           
+        Category:
+            class: App\Entity\Category
+        Post:
+            class: App\Entity\Post
+            form:
+                fields:
+                    - { property: 'titre', type: 'text_editor' }
+                    - { property: 'commentaire', type: 'text_editor' }
+                    - { property: 'created_At'}
+                    - { property: 'auteur', type: 'text_editor' }
+        Comment: 
+            class: App\Entity\Comment
+            
+        Produit:
+            class: App\Entity\Produit
+            list:
+                fields:
+                    - { property: 'titreProduit'}
+                    - { property: 'descriptionProduit'}
+                    - { property: 'prixProduit'}
+                    - { property: 'categorie'}
+                    - { property: 'imageName', 
+                        type: 'image', 
+                        base_path: '%app.path.product_images%' }
+                    # - { property: 'imageFile'}
+                   
+                    
+            show:
+                fields:
+                    - { property: 'titreProduit'}
+                    - { property: 'descriptionProduit'}
+                    - { property: 'prixProduit'}
+                    - { property: 'categorie'}
+                    - { property: 'imageName', 
+                        type: 'image', 
+                        base_path: '%app.path.product_images%' }
+                    # - { property: 'imageFile'}
+                   
+            form:
+                fields:
+                    - { property: 'titreProduit'}
+                    - { property: 'descriptionProduit'}
+                    - { property: 'prixProduit' , type: 'money', type_options: { currency: 'EUR' }}
+                    - { property: 'categorie'}
+                    - { property: 'imageFile', 
+                        type: 'vich_image', 
+                        base_path: '%app.path.product_images%' }
+                    

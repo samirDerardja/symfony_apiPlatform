@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des départements par régions{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+  <form action="" method="get">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="class form-group">
+          <select name="user" id="user" class="form-control">
+            <option value="Toutes">Toutes les regions</option>
+            {% for myUser in myUsers %}
+            <option value="{{myUser.code}}" {% if app.request.query.get('user') == (myUser.code) %} selected {% endif %}</option> {{myUser.nom}} </option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Rechecher</button>
+      </div>
+    </div>
+
+  </form>
+  
+
+  </div>
+</div>
+{% endblock %}
